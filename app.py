@@ -6,18 +6,35 @@ from PIL import Image
 import numpy as np
 import io
 import base64
+import os
 
 app = Flask(__name__)
 
-# Define the endpoint for the image processing
-@app.route("/process-image", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        # handle the post request
-        pass
-    else:
-        # handle the get request
-        pass
+
+# Get the current working directory
+base_dir = os.getcwd()
+
+# Construct the full path to the images directory
+images_dir = os.path.join(base_dir, "images")
+
+# Create the images directory if it doesn't exist
+if not os.path.exists(images_dir):
+    os.makedirs(images_dir)
+
+# Construct the full path to the image file
+image_path = os.path.join(images_dir, "image.jpg")
+
+# Save the image to the server at the specified path
+with open(image_path, "wb") as f:
+    f.write(image_data)
+
+
+@app.route('/process-image', methods=['POST'])
+def process_image():
+    image_file = request.files['image']
+    image_path = os.path.join(images_dir, image_file.filename)
+    image_file.save(image_path)
+
 def process_image():
     # Get the image data from the request
     image_data = request.get_data()
