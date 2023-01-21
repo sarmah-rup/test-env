@@ -8,11 +8,9 @@ import io
 import base64
 
 app = Flask(__name__)
-flask run --host=127.0.0.1 --port=5000
-
 
 # Define the endpoint for the image processing
-@app.route("/", methods=["GET", "POST"])
+@app.route("/process-image", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         # handle the post request
