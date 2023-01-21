@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Color Cards</title>
+  <title>Image Upload and Dominant Color Extraction</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <h1>Image Upload and Dominant Color Extraction</h1>
+
+  <form>
+    <label for="image-input">Select an image:</label>
     <input type="file" id="image-input" accept="image/*">
-    <img id="image" src="" alt="uploaded image">
-    <div class="color-cards">
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-    </div>
+    <br>
+    <img id="image-preview" src="" alt="Image Preview">
+    <br>
+    <button type="button" id="upload-button">Upload Image</button>
+  </form>
+
+  <div id="color-cards">
+    <!-- color cards will be added here -->
   </div>
+
   <script src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 </body>
 </html>
