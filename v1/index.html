@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+</head>
+<body>
+  <style>
+  .color-card {
+  width: 100px;
+  height: 100px; 
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+  }
+  </style>
+  <div class="color-card">
+  </style>
+  
+    <input type="file" id="image-input" onchange="previewImage()">
+    <br>
+    <img id="preview-image" src="" alt="Image Preview">
+    <div id="color-cards"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+
+    <script src="script.js"></script>
+    <style type="text/css" scr="styles.css"></style>
+</body>
+</html>

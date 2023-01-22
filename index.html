@@ -1,26 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Color Cards</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Image Upload</title>
+    <style>
+        /* Add styles for the header */
+        header {
+            background-color: #3f51b5;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Add styles for the logo */
+        header img {
+            height: 50px;
+        }
+
+        /* Add styles for the body */
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Add styles for the main container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin: 0 auto; /* center the image horizontally */         
+    display: grid;
+    place-items: center; /* center items both horizontally and vertically */
+    height: 100vh; /* make the container fill the full height of the viewport */
+        }
+
+        /* Add styles for the color cards */
+        .color-card {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: all .5s ease-in-out;
+          
+        }
+
+        /* Add styles for the footer */
+        footer {
+            background-color: #3f51b5;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+
+        /* Add animation for the color cards */
+        .color-card:hover {
+            transform: scale(1.2);
+        }
+        #preview-image {
+        width: 500px;
+        height: auto;
+        display: block;
+        margin: 0 auto; /* center the image horizontally */
+        }
+
+    /* Add styles for the sidebar */
+    .sidebar {
+        position: fixed;
+        right: -320px; /* hide sidebar off-screen initially */
+        top: 0;
+        bottom: 0;
+        width: 400px;
+        background-color: rgba(54, 62, 81, 0.315);
+        padding: 20px;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+        transition: right 0.5s ease-in-out;
+    }
+
+    .sidebar.show {
+        right: 0; /* slide sidebar on-screen */
+        overflow-y: scroll;
+    }
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <form>
-  <input type="file" id="image-input" name="image">
-  <input type="submit" value="Upload">
-</form>
-    </form>
-    <img id="image-display" src="">
-    <div class="color-cards">
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-    </div>
-  </div>
-  <script src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <header>
+        <img src="logo.png" alt="Example logo">
+    </header>
+    <div class="container"`>
+        <input type="file" id="image-input" onchange="previewImage()">
+        <br>
+        <img id="preview-image" src="" alt="Image Preview">
+        <div id="color-cards"></div>
+        <div class="sidebar" id="sidebar">
+          <div class="sidebar-content">
+            <img src="logo.png" alt="Example Image">
+            <p>Some text describing the image</p>
+        </div>
+
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.0.3/chroma.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <script src="chroma.min.js"></script>
+
+
+    <script src="script2.js"></script>
+    <script src="dist/bundle.js"></script>
+    <style type="text/css" scr="styles.css"></style>
+  
 </body>
 </html>

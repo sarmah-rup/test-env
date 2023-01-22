@@ -1,0 +1,10 @@
+#preview-image {
+    width: 600px;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+
+#color-cards {
+  display: inline;
+}

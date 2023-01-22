@@ -1,66 +1,37 @@
-// select the file input and preview elements
-const input = document.querySelector("input[type='file']");
-const preview = document.querySelector("img");
+var imageInput = document.getElementById('image-input');
+var previewImage = document.getElementById('preview-image');
+var colorThief = new ColorThief();
+var colorCards = document.getElementById("color-cards");
+var sidebar = document.getElementById("sidebar");
 
-// handle the file input change event
-input.addEventListener("change", e => {
-  // get the file
-  const file = e.target.files[0];
-
-  // create a file reader
-  const reader = new FileReader();
-
-  // set the file reader onload event
-  reader.onload = e => {
-    // set the preview image src to the file data
-    preview.src = e.target.result;
-
-    // send the file to the server
-    sendImageToServer(file);
-  };
-
-  // read the file as data url
-  reader.readAsDataURL(file);
+imageInput.addEventListener("change", function() {
+    if (imageInput.files.length > 0) {
+        var image = imageInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            previewImage.addEventListener("load", function() {
+                var colors = colorThief.getPalette(previewImage, 5);
+                console.log(colors);
+                colorCards.innerHTML = "";
+                for (var i = 0; i < colors.length; i++) {
+                    var colorCard = document.createElement("div");
+                    colorCard.classList.add("color-card");
+                    colorCard.style.backgroundColor = `rgb(${colors[i][0]},${colors[i][1]},${colors[i][2]})`;
+                    colorCards.appendChild(colorCard);
+                }
+                // added click event on colorCards
+                colorCards.addEventListener("click", function() {
+                    sidebar.classList.toggle("show");
+                });
+            });
+        }
+        reader.readAsDataURL(image);
+    }
 });
 
-// function to send the image to the server
-function sendImageToServer(file) {
-  // create a new FormData object
-  const formData = new FormData();
-
-  // append the file to the FormData object
-  formData.append("image", file);
-
-  // send the FormData object to the server
-  fetch("/process-image", {
-    method: "POST",
-    body: formData
-  })
+fetch('/colors.json')
     .then(response => response.json())
-    .then(data => {
-      // display the dominant colors on the HTML page
-      displayDominantColors(data.colors);
-    })
-    .catch(error => console.log(error));
-}
-
-// function to display the dominant colors on the HTML page
-function displayDominantColors(colors) {
-  // select the color cards container
-  const container = document.querySelector(".color-cards");
-
-  // remove existing color cards
-  container.innerHTML = "";
-
-  // create new color cards
-  colors.forEach(color => {
-    // create a new div element
-    const card = document.createElement("div");
-
-    // set the background color of the div element
-    card.style.backgroundColor = color;
-
-    // add the div element to the container
-    container.appendChild(card);
-  });
-}
+    .then(colorsData => {
+        // code to compare colors goes here
+    });
